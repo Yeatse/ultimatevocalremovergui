@@ -13,7 +13,8 @@ natsort
 norbert
 numba
 numpy==1.22.0
-onnxruntime-gpu
+onnxruntime-gpu; sys_platform != 'darwin'
+onnxruntime; sys_platform == 'darwin'
 opencv-python
 openunmix
 Pillow
@@ -22,7 +23,7 @@ pyAesCrypt
 pydub
 pyglet
 pyperclip
-pywin32
+pywin32; sys_platform != 'darwin'
 pyyaml
 resampy==0.2.2
 samplerate

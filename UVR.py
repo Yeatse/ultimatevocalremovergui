@@ -2208,7 +2208,7 @@ class MainWindow(TkinterDnD.Tk):
         """
 
         try:
-            temp_ModelParams_dir = 'lib_v5\modelparams'  # nopep8
+            temp_ModelParams_dir = os.path.join('lib_v5', 'modelparams')  # nopep8
             new_ModelParams = os.listdir(temp_ModelParams_dir)
             
             if new_ModelParams != self.lastModelParams:
@@ -2226,7 +2226,7 @@ class MainWindow(TkinterDnD.Tk):
         
         
         try:
-            temp_ModelParams_dir = 'lib_v5\modelparams'  # nopep8
+            temp_ModelParams_dir = os.path.join('lib_v5', 'modelparams')  # nopep8
             new_ModelParams = os.listdir(temp_ModelParams_dir)
             
             if new_ModelParams != self.lastModelParams_ens:
@@ -3095,7 +3095,7 @@ class MainWindow(TkinterDnD.Tk):
     def open_newModel_filedialog(self):
         """Let user paste an MDX-Net model to use for the vocal Separation"""
         
-        filename = 'models\MDX_Net_Models'
+        filename = os.path.join('models', 'MDX_Net_Models')
 
         if sys.platform == "win32":
             os.startfile(filename)
@@ -3293,7 +3293,7 @@ class MainWindow(TkinterDnD.Tk):
         #vr_opt.attributes("-topmost", True)
 
         # change title bar icon
-        vr_opt.iconbitmap('img\\UVR-Icon-v2.ico')
+        vr_opt.iconbitmap(os.path.join('img', 'UVR-Icon-v2.ico'))
 
         def close_win():
             vr_opt.destroy()
@@ -3434,7 +3434,7 @@ class MainWindow(TkinterDnD.Tk):
         demuc_opt.wm_transient(root)
 
         # change title bar icon
-        demuc_opt.iconbitmap('img\\UVR-Icon-v2.ico')
+        demuc_opt.iconbitmap(os.path.join('img', 'UVR-Icon-v2.ico'))
         
         def close_win():
             demuc_opt.destroy()
@@ -3533,7 +3533,7 @@ class MainWindow(TkinterDnD.Tk):
         mdx_net_opt.wm_transient(root)
 
         # change title bar icon
-        mdx_net_opt.iconbitmap('img\\UVR-Icon-v2.ico')
+        mdx_net_opt.iconbitmap(os.path.join('img', 'UVR-Icon-v2.ico'))
         
         def close_win():
             mdx_net_opt.destroy()
@@ -3755,7 +3755,7 @@ class MainWindow(TkinterDnD.Tk):
         custom_ens_opt.wm_transient(root)
 
         # change title bar icon
-        custom_ens_opt.iconbitmap('img\\UVR-Icon-v2.ico')
+        custom_ens_opt.iconbitmap(os.path.join('img', 'UVR-Icon-v2.ico'))
         
         def close_win():
             custom_ens_opt.destroy()
@@ -4113,7 +4113,7 @@ class MainWindow(TkinterDnD.Tk):
             help_guide_opt.wm_transient(root)
 
         # change title bar icon
-        help_guide_opt.iconbitmap('img\\UVR-Icon-v2.ico')
+        help_guide_opt.iconbitmap(os.path.join('img', 'UVR-Icon-v2.ico'))
         
         def close_win():
             help_guide_opt.destroy()
@@ -4441,7 +4441,7 @@ class MainWindow(TkinterDnD.Tk):
         settings_menu.wm_transient(root)
 
         # change title bar icon
-        settings_menu.iconbitmap('img\\UVR-Icon-v2.ico')
+        settings_menu.iconbitmap(os.path.join('img', 'UVR-Icon-V2.ico'))
 
         def askyesorno():
             """
@@ -4472,7 +4472,7 @@ class MainWindow(TkinterDnD.Tk):
             top_dialoge.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
             # change title bar icon
-            top_dialoge.iconbitmap('img\\UVR-Icon-v2.ico')
+            top_dialoge.iconbitmap(os.path.join('img', 'UVR-Icon-V2.ico'))
             
             tabControl = ttk.Notebook(top_dialoge)
             
@@ -4757,7 +4757,7 @@ class MainWindow(TkinterDnD.Tk):
             top_code.wm_transient(settings_menu)
 
             # change title bar icon
-            top_code.iconbitmap('img\\UVR-Icon-v2.ico')
+            top_code.iconbitmap(os.path.join('img', 'UVR-Icon-V2.ico'))
             
             tabControl = ttk.Notebook(top_code)
             
@@ -4870,7 +4870,7 @@ class MainWindow(TkinterDnD.Tk):
             top_code.wm_transient(settings_menu)
 
             # change title bar icon
-            top_code.iconbitmap('img\\UVR-Icon-v2.ico')
+            top_code.iconbitmap(os.path.join('img', 'UVR-Icon-V2.ico'))
             
             tabControl = ttk.Notebook(top_code)
             
@@ -6167,7 +6167,7 @@ class MainWindow(TkinterDnD.Tk):
         # error_log_screen.wm_transient(root)
 
         # change title bar icon
-        error_log_screen.iconbitmap('img\\UVR-Icon-v2.ico')
+        error_log_screen.iconbitmap(os.path.join('img', 'UVR-Icon-V2.ico'))
         
         def close_win():
             error_log_screen.destroy()
@@ -6229,7 +6229,7 @@ class MainWindow(TkinterDnD.Tk):
             
     def open_Modelfolder_vr(self):
         """Let user paste a ".pth" model to use for the vocal Separation"""
-        filename = 'models\Main_Models'
+        filename = os.path.join('models', 'Main_Models')
 
         if sys.platform == "win32":
             os.startfile(filename)
@@ -6239,7 +6239,7 @@ class MainWindow(TkinterDnD.Tk):
             
     def open_Modelfolder_de(self):
         """Let user paste a ".pth" model to use for the vocal Separation"""
-        filename = 'models\Demucs_Models'
+        filename = os.path.join('models', 'Demucs_Models')
 
         if sys.platform == "win32":
             os.startfile(filename)
@@ -6255,7 +6255,7 @@ class MainWindow(TkinterDnD.Tk):
             os.startfile(pathname)
         else:
             opener = "open" if sys.platform == "darwin" else "xdg-open"
-            subprocess.call([opener, filename])
+            subprocess.call([opener, pathname])
         
     def save_values(self):
         """
@@ -6383,7 +6383,7 @@ if __name__ == "__main__":
     'wm', 
     'iconphoto', 
     root._w, 
-    tk.PhotoImage(file='img\\GUI-icon.png')
+    tk.PhotoImage(file=os.path.join('img', 'GUI-icon.png'))
     )
 
     lib_v5.sv_ttk.set_theme("dark")

@@ -46,6 +46,11 @@ import warnings
 import lib_v5.filelist
 
 #from typing import Literal
+
+if sys.platform == 'win32':
+    sox_executable = 'lib_v5\\sox\\sox.exe'
+else:
+    sox_executable = 'lib_v5/sox/sox'
     
 class Predictor():        
     def __init__(self):
@@ -88,7 +93,7 @@ class Predictor():
         mdx_model_set.wm_transient(main_window)
 
         # change title bar icon
-        mdx_model_set.iconbitmap('img\\UVR-Icon-v2.ico')
+        mdx_model_set.iconbitmap(os.path.join('img', 'UVR-Icon-v2.ico'))
         
         mdx_model_set_window = ttk.Notebook(mdx_model_set)
         
@@ -575,9 +580,9 @@ class Predictor():
                 widget_text.write('Done!\n')        
                 widget_text.write(base_text + 'Performing Noise Reduction... ')
                 reduction_sen = float(int(data['noisereduc_s'])/10)
-                subprocess.call("lib_v5\\sox\\sox.exe" + ' "' + 
+                subprocess.call(sox_executable + ' "' + 
                             f"{str(non_reduced_vocal_path)}"  + '" "' + f"{str(vocal_path)}" + '" ' + 
-                            "noisered lib_v5\\sox\\" + noise_pro_set + ".prof " + f"{reduction_sen}", 
+                            "noisered " + os.path.join('lib_v5', 'sox', noise_pro_set + '.prof') + f" {reduction_sen}", 
                             shell=True, stdout=subprocess.PIPE,
                             stdin=subprocess.PIPE, stderr=subprocess.PIPE)
                 widget_text.write('Done!\n')        
@@ -603,9 +608,9 @@ class Predictor():
                 widget_text.write(base_text + 'Performing Noise Reduction... ')
                 reduction_sen = float(data['noisereduc_s'])/10
                 #print(noise_pro_set)
-                subprocess.call("lib_v5\\sox\\sox.exe" + ' "' + 
+                subprocess.call(sox_executable + ' "' + 
                             f"{str(non_reduced_vocal_path)}"  + '" "' + f"{str(vocal_path)}" + '" ' + 
-                            "noisered lib_v5\\sox\\" + noise_pro_set + ".prof " + f"{reduction_sen}", 
+                            "noisered " + os.path.join('lib_v5', 'sox', noise_pro_set + '.prof') + f" {reduction_sen}", 
                             shell=True, stdout=subprocess.PIPE,
                             stdin=subprocess.PIPE, stderr=subprocess.PIPE)
                 update_progress(**progress_kwargs,
@@ -716,9 +721,9 @@ class Predictor():
                         reduction_sen = float(data['noisereduc_s'])/10
                         #print(noise_pro_set)
                         
-                        subprocess.call("lib_v5\\sox\\sox.exe" + ' "' + 
+                        subprocess.call(sox_executable + ' "' + 
                                     f"{str(non_reduced_Instrumental_path)}"  + '" "' + f"{str(Instrumental_path)}" + '" ' + 
-                                    "noisered lib_v5\\sox\\" + noise_pro_set + ".prof " + f"{reduction_sen}", 
+                                    "noisered " + os.path.join('lib_v5', 'sox', noise_pro_set + '.prof') + f" {reduction_sen}", 
                                     shell=True, stdout=subprocess.PIPE,
                                     stdin=subprocess.PIPE, stderr=subprocess.PIPE)
                     else:
@@ -1884,7 +1889,7 @@ def main(window: tk.Wm,
             if data['noisereduc_s'] == 'None':
                 pass
             else:
-                if not os.path.isfile("lib_v5\sox\sox.exe"):
+                if not os.path.isfile(sox_executable):
                     data['noisereduc_s'] = 'None'
                     data['non_red'] = False
                     widget_text.write(base_text + 'SoX is missing and required for noise reduction.\n')
